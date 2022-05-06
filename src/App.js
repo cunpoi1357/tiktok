@@ -6,9 +6,6 @@ import { Fragment } from 'react'
 function App() {
     return (
         <Router>
-            <div className='App'>
-                <h1>React App</h1>
-            </div>
             <Routes>
                 {publicRoutes.map((route, index) => {
                     const Page = route.component
