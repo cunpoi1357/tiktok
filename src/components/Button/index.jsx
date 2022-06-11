@@ -68,7 +68,7 @@ function Button({
 }
 
 Button.propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
     text: PropTypes.bool,
     primary: PropTypes.bool,
     outline: PropTypes.bool,

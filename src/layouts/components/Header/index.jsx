@@ -1,23 +1,18 @@
-import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
-
 import Tippy from '@tippyjs/react'
-import HeadLessTippy from '@tippyjs/react/headless'
 import 'tippy.js/dist/tippy.css'
+import { Link } from 'react-router-dom'
 
+import config from '~/config'
 import styles from './Header.module.scss'
 import images from '~/assets/images/'
-import { Wrapper as PopperWrapper } from '~/components/Popper'
-import AccountItem from '~/components/AccountItem'
 import Button from '~/components/Button'
+import Search from '../Search'
 import Menu from '~/components/Popper/Menu'
 import {
-    CircleXIcon,
     InboxIcon,
     MessageIcon,
     MoreIcon,
-    SearchIcon,
-    SpinnerIcon,
     UploadIcon,
     LanguageIcon,
     QuestionIcon,
@@ -60,13 +55,7 @@ const MENU_ITEMS = [
 ]
 
 function Header() {
-    const [searchResults, setSearchResults] = useState([])
-
     const currentUser = true
-
-    useEffect(() => {
-        setSearchResults([])
-    }, [])
 
     const handleMenuChange = item => {
         console.log(item)
@@ -78,11 +67,6 @@ function Header() {
             title: 'View Profile',
             to: '/@hoaa'
         },
-        // {
-        //     icon: <FontAwesomeIcon icon={faCoins} />,
-        //     title: 'Get coins',
-        //     to: '/coin'
-        // },
         {
             icon: <SettingsIcon />,
             title: 'Settings',
@@ -100,33 +84,11 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo} alt='Tiktok' className={cx('logo')} />
-                <HeadLessTippy
-                    interactive
-                    visible={searchResults.length > 0}
-                    render={attrs => (
-                        <div className={cx('search-results')} {...attrs}>
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder='Search accounts and videos' />
-                        <button className={cx('clear')}>
-                            <CircleXIcon />
-                        </button>
-                        <SpinnerIcon className={cx('loading')} />
-                        <button className={cx('search-btn')}>
-                            <SearchIcon />
-                        </button>
-                    </div>
-                </HeadLessTippy>
+                <Link to={config.routes.home} className={cx('logo-link')}>
+                    <img src={images.logo} alt='Tiktok' />
+                </Link>
+
+                <Search />
 
                 <div className={cx('actions')}>
                     {currentUser ? (
@@ -144,6 +106,7 @@ function Header() {
                             <Tippy content='Inbox' placement='bottom' theme='tippy'>
                                 <button className={cx('action-btn')}>
                                     <InboxIcon />
+                                    <span className={cx('badge')}>12</span>
                                 </button>
                             </Tippy>
                         </>
@@ -151,6 +114,7 @@ function Header() {
                         <>
                             <Button text>Upload</Button>
                             <Button primary>Log in</Button>
+                            <Button small>Log in</Button>
                         </>
                     )}
 
