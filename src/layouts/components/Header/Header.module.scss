@@ -27,7 +27,7 @@
     width: var(--default-layout-width);
     height: 100%;
 
-    padding: 0 var(--default-layout-horizontal-spacer);
+    padding: 0 24px 0 20px;
 }
 
 .logo-link {
@@ -44,6 +44,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
 
     height: 36px;
     width: 48px;

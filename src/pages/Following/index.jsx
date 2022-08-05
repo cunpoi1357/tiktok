@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Following() {
-    return <div>Following page</div>
+    return <h2>Following page</h2>
 }
 
 export default Following
